@@ -1,0 +1,14 @@
+<!--pages/main/main.wxml-->
+<form bindsubmit='res'>
+  <view class="section">
+    <input maxlength="10" name="litter" placeholder="请输入垃圾名称" />
+    <view class="section__title">请选择垃圾种类</view>
+    <picker bindchange="bindPickerChange" name="type"value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>
+  </view>
+  <view><button form-type='submit'>提交</button></view>
+</form>
+<button bindtap="ToSearch">点我开始搜索</button>

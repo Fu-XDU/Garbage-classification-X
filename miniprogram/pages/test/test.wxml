@@ -1,0 +1,2 @@
+<view wx:for="{{resultList}}" wx:key="" data-id='{{item}}'>{{item}}</view>
+<button bindtap='add'>add1</button>

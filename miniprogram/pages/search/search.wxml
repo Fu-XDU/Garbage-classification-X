@@ -1,0 +1,24 @@
+<!--<view wx:for="{{resultList}}" wx:key="" data-id='{{item}}'>{{item}}{{inputValue}</view>-->
+<view class='container'>
+  <view  class='search_input'>
+    <icon type="search" size="15" class='search_icon' />
+    <input  bindinput="res" placeholder='请输入关键字' placeholder-class="search_placeholder" value="{{inputValue}}"></input>
+  </view>
+  <view class='flex space_between align_center search_title'>
+     <view>
+        搜索历史
+     </view>
+     <view  wx:if="{{list.length!=0}}">清空搜索历史</view>
+  </view>
+  <view class='list'>
+     <view class="key" wx:if="{{list.length==0}}">暂无搜索记录</view>
+  </view>
+   <view  class='search_result' wx:if="{{inputValue}}">
+    <view class='no_more' wx:if="{{resultList.length==0}}">暂无相关内容</view>
+       <view wx:for="{{resultList}}" wx:key="" bindtap='detail' data-id='{{item}}'>
+          {{item}}
+       </view>
+       
+  </view>
+</view>
+
