@@ -1,0 +1,27 @@
+<view class='productNav'>
+  <!-- 左侧 -->
+  <view class='left'>
+    <view class="harmful">有害垃圾</view>
+    <view bindtap="ToRecyclable">可回收物</view>
+    <view bindtap='ToWet'>湿垃圾</view>
+    <view bindtap='ToDry'>干垃圾</view>
+    <view bindtap='ToWet'>厨余垃圾</view>
+    <view bindtap='ToDry'>其他垃圾</view>
+  </view>
+  <!-- 右侧 -->
+  <view class='right'>
+    <view class='type'>
+      <view class="warn"><image mode="widthFix" src="../../images/Harmful.png" ></image>
+        <text plain="false">  有害垃圾包括废电池、废日光灯管、废水银温度计、过期药品等，这些垃圾需要特殊安全处理。分类投放有害垃圾时，应注意轻放。
+          其中：
+          废灯管等易破损的有害垃圾应连带包装或包裹后投放；
+          废弃药品宜连带包装一并投放；
+          杀虫剂等压力罐装容器，应排空内容物后投放；
+          在公共场所产生有害垃圾且未发现对应收集容器时，应携带至有害垃圾投放点妥善投放。</text>
+      </view>
+      <view wx:for="{{resultList}}" wx:key="" bindtap='detail' data-id='{{item}}' class='txt'>
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>

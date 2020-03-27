@@ -1,0 +1,26 @@
+<view class='productNav'>
+  <!-- 左侧 -->
+  <view class='left'>
+    <view class="harmful" bindtap="ToHarmful">有害垃圾</view>
+    <view bindtap="ToRecyclable">可回收物</view>
+    <view class="new">湿垃圾</view>
+    <view bindtap='ToDry'>干垃圾</view>
+    <view class="new">厨余垃圾</view>
+    <view bindtap='ToDry'>其他垃圾</view>
+  </view>
+  <!-- 右侧 -->
+  <view class='right'>
+    <view class='type'>
+      <view class="warn"><image mode="widthFix" src="../../images/Wet.png" ></image>
+        <text type="warn" plain="false" bindtap="ToSearch">  湿垃圾又称为厨余垃圾，即易腐垃圾，指食材废料、剩菜剩饭、过期食品、瓜皮果核、花卉绿植、中药药渣等易腐的生物质生活废弃物。湿垃圾是居民日常生活及食品加工、饮食服务、单位供餐等活动中产生的垃圾，包括丢弃不用的菜叶、剩菜、剩饭、果皮、蛋壳、茶渣、骨头等，其主要来源为家庭厨房、餐厅、饭店、食堂、市场及其他与食品加工有关的行业。
+          投放要求：
+          纯流质的食物垃圾，如牛奶等，应直接倒进下水口，
+          有包装物的湿垃圾应将包装物去除后分类投放，
+          包装物请投放到对应的可回收物或干垃圾容器。</text>
+      </view>
+      <view wx:for="{{resultList}}" wx:key="" bindtap='detail' data-id='{{item}}' class='txt'>
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>

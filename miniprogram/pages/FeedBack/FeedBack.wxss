@@ -1,0 +1,31 @@
+/* miniprogram/pages/FeedBack/FeedBack.wxss */
+
+textarea {
+  width: 700rpx;
+  height: 500rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+}
+
+.textarea-bg {
+  background-color: #fff;
+  padding: 10rpx;
+  font-size: 32rpx;
+}
+
+.guide {
+  font-size: 32rpx;
+  display: flex;
+  flex-flow: row;
+}
+
+.guide view {
+  width: 100%;
+  display: inline-block;
+}
+
+.right {
+  text-align: right;
+  padding-right: 20rpx;
+}

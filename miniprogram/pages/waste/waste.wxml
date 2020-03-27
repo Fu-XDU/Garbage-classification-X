@@ -1,0 +1,34 @@
+<view>
+<image src="../../images/2.jpg" style="position: fixed; z-index: -999; width: 100%; height: 100%;"></image>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">有害垃圾</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">可回收物</view>
+    <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">干垃圾&其他垃圾</view>
+    <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">湿垃圾&厨余垃圾</view>
+  </scroll-view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+    <swiper-item class="tab-content">
+      <view wx:for="{{harmfullist}}" wx:key="unique" bindtap='detail' data-id='{{item}}' class="weui-cell">
+        <view wx:if="{{item.pinyin.length > 1}}" class="weui-cell__bd" data-cityname='{{item.litter}}' bindtap='citySelected'>{{item.litter}}</view>
+       </view>
+    </swiper-item>
+    <swiper-item class="tab-content">
+      <view wx:for="{{recyclablelist}}" wx:key="" bindtap='detail' data-id='{{item}}' class="weui-cell">
+        <view wx:if="{{item.pinyin.length > 1}}" class="weui-cell__bd" data-cityname='{{item.litter}}' bindtap='citySelected'>{{item.litter}}</view>
+    <view wx:else class='city-item-A-Z' data-cityname='{{item.litter}}'>{{item.litter}}</view>
+      </view>
+    </swiper-item>
+    <swiper-item class="tab-content">
+      <view wx:for="{{drylist}}" wx:key="" bindtap='detail' data-id='{{item}}' class="weui-cell">
+        <view wx:if="{{item.pinyin.length > 1}}" class="weui-cell__bd" data-cityname='{{item.litter}}' bindtap='citySelected'>{{item.litter}}</view>
+    <view wx:else class='city-item-A-Z' data-cityname='{{item.litter}}'>{{item.litter}}</view>
+      </view>
+    </swiper-item>
+    <swiper-item class="tab-content">
+      <view wx:for="{{wetlist}}" wx:key="" bindtap='detail' data-id='{{item}}' class="weui-cell">
+        <view wx:if="{{item.pinyin.length > 1}}" class="weui-cell__bd" data-cityname='{{item.litter}}' bindtap='citySelected'>{{item.litter}}</view>
+    <view wx:else class='city-item-A-Z' data-cityname='{{item.litter}}'>{{item.litter}}</view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

@@ -1,14 +1,49 @@
 <!--pages/main/main.wxml-->
-<form bindsubmit='res'>
+<swiper class="activity">
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="100%" height="155" />
+    </swiper-item>
+  </block>
+</swiper>
+<button type="warn" plain="false">注意：公共场所产生垃圾且未发现对应收集容器时，应携带至有投放点处妥善投放</button>
+<text class='tip'>在这里，你可以提交新的垃圾帮助我们完善数据库</text>
+<form bindsubmit='check'>
   <view class="section">
-    <input maxlength="10" name="litter" placeholder="请输入垃圾名称" />
-    <view class="section__title">请选择垃圾种类</view>
-    <picker bindchange="bindPickerChange" name="type"value="{{index}}" range="{{array}}">
-    <view class="picker">
-      当前选择：{{array[index]}}
+    <view class="section_input">
+      <input maxlength="10" name="litter" placeholder="请输入垃圾名称"/>
     </view>
-  </picker>
+    <picker bindchange="bindPickerChange" name="type" value="{{array[index]}}" range="{{array}}">
+      <view class="picker">
+        当前：{{array[index]}}
+      </view>
+    </picker>
   </view>
-  <view><button form-type='submit'>提交</button></view>
+  <view>
+    <button plain="true" form-type='submit'>提交</button>
+  </view>
 </form>
-<button bindtap="ToSearch">点我开始搜索</button>
+<view class='search_input'>
+    <!--<icon type="search" size="15" class='search_icon' />-->
+    <input disabled="true" bindtap="ToSearch" placeholder='点我开始搜索' placeholder-class="search_placeholder"></input>
+  </view>
+<view class="hot-room mt30">
+  <view class="hroom-list clearfix">
+    <navigator class="box-sizing" url="">
+      <image bindtap="ToHarmful" src="../../images/Harmful.png" alt=""></image>
+    </navigator>
+    <!--有害垃圾-->
+    <navigator class="box-sizing hrm-li2" url="">
+      <image bindtap="ToRecyclable" src="../../images/Recyclable.png" alt=""></image>
+    </navigator>
+    <!--可回收物-->
+    <navigator class="box-sizing" url="">
+      <image bindtap="ToWet" src="../../images/Wet.png" alt=""></image>
+    </navigator>
+    <!--厨余垃圾-->
+    <navigator class="box-sizing" url="">
+      <image bindtap="ToDry" src="../../images/Dry.png" alt=""></image>
+    </navigator>
+    <!--其它垃圾-->
+  </view>
+</view>

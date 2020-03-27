@@ -37,13 +37,13 @@ async function sendTemplateMessage(event) {
     page: 'pages/openapi/openapi',
     data: {
       keyword1: {
-        value: '未名咖啡屋',
+        value: '中国 河南 新乡 长垣',
       },
       keyword2: {
-        value: '2019 年 1 月 1 日',
+        value: '2019 年 7 月 23 日',
       },
       keyword3: {
-        value: '拿铁',
+        value: '垃圾一个',
       },
     }
   })

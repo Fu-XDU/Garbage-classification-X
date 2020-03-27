@@ -1,13 +1,267 @@
 /* pages/main/main.wxss */
+
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.iii{
- width: 100%;
+
+.ToSearch {
+  size: mini;
 }
-.iii slide-image{
+
+.section_input {
+  width: 310rpx;
+  height: 72rpx;
+  background: rgba(247, 247, 247, 1);
+  border-radius: 36rpx;
+  padding-left: 40rpx;
+  margin: auto;
+  font-size: 30rpx;
+  float: left;
+}
+
+.section_input input {
+  line-height: 72rpx;
+  height: 72rpx;
+  width: 500rpx;
+}
+
+.search_input {
+  width: 620rpx;
+  height: 72rpx;
+  background: rgba(247, 247, 247, 1);
+  border-radius: 36rpx;
+  padding-left: 80rpx;
+  margin: auto;
+  font-size: 30rpx;
+}
+
+.search_input input {
+  line-height: 72rpx;
+  height: 72rpx;
+  width: 500rpx;
+}
+
+.search_icon {
+  position: absolute;
+  left: 60rpx;
+  top: 64.6%; /*搜索图标的高低设置*/
+}
+
+.tip {
+  font-size: 34rpx;
+}
+
+.picker {
+  font-size: 50rpx;
+}
+
+.fourWaste button {
+  margin-top: 5rpx;
+  line-height: 105rpx;
+  background-color: #545454;
+  color: #161515;
+  border-radius: 200rpx;
+}
+
+.fourWaste button::after {
+  border: none;
+  border-radius: 0;
+}
+
+.button-hover {
+  background-color: red;
+}
+
+/** 添加自定义button点击态样式类**/
+
+.other-button-hover {
+  background-color: blue;
+}
+
+button {
+  margin: 10px;
+}
+
+.harmful {
+  margin-top: 30px;
+  line-height: 105rpx;
+  background-color: rgb(173, 32, 32);
+  color: #f5efef;
+  border-radius: 98rpx;
+}
+
+.recyclable {
+  margin-top: 30px;
+  line-height: 105rpx;
+  background-color: rgb(2, 46, 94);
+  color: #f5efef;
+  border-radius: 98rpx;
+}
+
+.wet {
+  margin-top: 30px;
+  line-height: 105rpx;
+  background-color: rgb(116, 64, 38);
+  color: #f5efef;
+  border-radius: 98rpx;
+}
+
+.dry {
+  margin-top: 30px;
+  line-height: 105rpx;
+  background-color: rgb(32, 32, 29);
+  color: #f5efef;
+  border-radius: 98rpx;
+}
+
+.button-hover1 {
+  background-color: #a12020;
+  color: #a09e9e;
+}
+
+.button-hover2 {
+  background-color: #3e4af0;
+  color: #a09e9e;
+}
+
+.button-hover3 {
+  background-color: #703e0f;
+  color: #a09e9e;
+}
+
+.button-hover4 {
+  background-color: rgb(41, 2, 2);
+  color: #a09e9e;
+}
+
+.activity {
   width: 100%;
-  height: 100%;
+  height: 375rpx;
+}
+
+.activity image {
+  width: 100%;
+  height: 375rpx;
+}
+
+page {
+  background-color: #fff;
+}
+
+.box {
+  display: -webkit-box;
+  display: -webkit-flex;
+}
+
+.flex1 {
+  -webkit-flex: 1;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  flex: 1;
+}
+
+.flex2 {
+  -webkit-flex: 2;
+  -webkit-box-flex: 2;
+  box-flex: 2;
+  flex: 2;
+}
+
+.flex3 {
+  -webkit-flex: 3;
+  -webkit-box-flex: 3;
+  box-flex: 3;
+  flex: 3;
+}
+
+/*box-sizing包括边框的宽度*/
+
+.box-sizing {
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*图片大小自适应*/
+
+image {
+  width: 100%;
+  display: block;
+}
+
+/*文字超出隐藏*/
+
+.text-elli {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/*清除浮动样式*/
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+.clearfix {
+  zoom: 1;
+  clear: both;
+}
+
+.clearfix:after {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  content: " ";
+  visibility: hidden;
+  clear: both;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.hidden {
+  display: none;
+}
+
+.block {
+  display: block;
+}
+
+.mt30 {
+  margin-top: 30rpx;
+}
+
+.hroom-list navigator {
+  float: left;
+  border-right: 1px solid #f7f7f7;
+  border-bottom: 1px solid #f7f7f7;
+  width: 50%;
+  height: 370rpx;
+}
+
+.hroom-list navigator:first-child, .hroom-list .hrm-li2 {
+  height: 379rpx;
+  border-top: 1px solid #f7f7f7;
+}
+
+.hroom-list navigator image {
+  height: 374rpx;
+}
+
+.hroom-list navigator:first-child image, .hroom-list .hrm-li2 image {
+  height: 374rpx;
+}
+
+.heal-list navigator, .heal-list navigator image {
+  height: 374rpx;
 }

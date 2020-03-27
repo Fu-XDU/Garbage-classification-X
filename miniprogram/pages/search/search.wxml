@@ -1,24 +1,42 @@
-<!--<view wx:for="{{resultList}}" wx:key="" data-id='{{item}}'>{{item}}{{inputValue}</view>-->
 <view class='container'>
-  <view  class='search_input'>
+  <view class='search_input'>
     <icon type="search" size="15" class='search_icon' />
-    <input  bindinput="res" placeholder='请输入关键字' placeholder-class="search_placeholder" value="{{inputValue}}"></input>
+    <input bindinput="res" placeholder='请输入关键字' placeholder-class="search_placeholder" value="{{inputValue}}"></input>
   </view>
   <view class='flex space_between align_center search_title'>
-     <view>
-        搜索历史
-     </view>
-     <view  wx:if="{{list.length!=0}}">清空搜索历史</view>
+    <view>
+      搜索历史
+    </view>
   </view>
   <view class='list'>
-     <view class="key" wx:if="{{list.length==0}}">暂无搜索记录</view>
+    <view class="key" wx:if="{{list.length==0}}">暂无搜索记录</view>
+    <view class="key" wx:for="{{list}}" wx:key="" bindtap='searchName' data-value='{{item}}'>{{item}}</view>
   </view>
-   <view  class='search_result' wx:if="{{inputValue}}">
-    <view class='no_more' wx:if="{{resultList.length==0}}">暂无相关内容</view>
-       <view wx:for="{{resultList}}" wx:key="" bindtap='detail' data-id='{{item}}'>
-          {{item}}
-       </view>
-       
+  <text>\n</text>
+  <button class="section_input" wx:if="{{list.length!=0}}" bindtap='remove'>清空搜索历史</button>
+  <view class='search_result' wx:if="{{inputValue}}">
+    <view class='no_more' wx:if="{{resultList.length==0}}">
+      <view>暂无相关内容</view>
+      <text>\n</text>
+      <button size='mini' type='primary' bindtap='onChangeShowState'>帮助我们完善词条</button>
+      <form bindsubmit='check' class="{{showView?'header_view_show':'header_view_hide'}}">
+        <view class="section">
+          <view class="section_input">
+            <input name="litter" placeholder='请输入垃圾名称' placeholder-class="search_placeholder" maxlength="10" name="litter"></input>
+          </view>
+          <picker bindchange="bindPickerChange" name="type" value="{{array[index]}}" range="{{array}}">
+            <view class="picker">
+              当前：{{array[index]}}
+            </view>
+          </picker>
+        </view>
+        <view>
+          <button plain="true" form-type='submit' size='default'>提交</button>
+        </view>
+      </form>
+    </view>
+    <view wx:for="{{resultList}}" wx:key="" bindtap='detail' data-id='{{item}}'>
+      {{item}}
+    </view>
   </view>
 </view>
-

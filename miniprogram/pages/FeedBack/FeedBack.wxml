@@ -1,0 +1,9 @@
+<!--miniprogram/pages/FeedBack/FeedBack.wxml-->
+<view class="guide">
+  <view>请描述具体问题</view>
+  <view class="right">{{contentLen}}/200</view>
+</view>
+<textarea class="textarea-bg" placeholder="请填写问题描述以便我们提供更好的帮助" bindinput='wordStaticContent' maxlength="200" />
+<view>联系方式(选填，便于我们与你联系)</view>
+<input pattern="[0-9]*" class="textarea-bg" placeholder="请输入邮件地址" bindinput='wordStaticemail' auto-height='true' maxlength="25" />
+<button bindtap='sendEmail'>提交</button>

@@ -1,0 +1,12 @@
+<!--miniprogram/pages/check/check.wxml-->
+<text>\n\n\n\n\n</text>
+<view class='text'>{{name}}</view>
+<picker class='text' bindchange="bindPickerChange" name="type" value="{{array[index]}}" range="{{array}}">
+            <view class="picker">
+              {{array[index]}}
+            </view>
+          </picker>
+<view class='add_btn'>
+  <button class='btn' bindtap='right'>是</button>
+  <button class='btn' bindtap='wrong'>否</button>
+</view>

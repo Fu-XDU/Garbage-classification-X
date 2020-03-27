@@ -1,0 +1,168 @@
+.harmful {
+  width: 18%;
+  line-height: 72rpx;
+  background-color: rgb(241, 241, 241);
+  color: #0f0101;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 0;
+}
+
+.recyclable {
+  line-height: 72rpx;
+  width: 25%;
+  background-color: #9c978b;
+  color: #0c0000;
+  position: fixed;
+  top: 0;
+  left: 25%;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 0;
+}
+
+.wet {
+  width: 25%;
+  line-height: 72rpx;
+  background-color: #9c978b;
+  color: #0c0000;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 0;
+}
+
+.dry {
+  width: 25%;
+  line-height: 72rpx;
+  background-color: #9c978b;
+  color: #faf6f6;
+  position: fixed;
+  top: 0;
+  left: 75%;
+  font-size: 30rpx;
+  text-align: center;
+  border-radius: 0;
+}
+
+.button-hover1 {
+  background-color: #a12020;
+  color: #a09e9e;
+}
+
+.button-hover2 {
+  background-color: #3e4af0;
+  color: #a09e9e;
+}
+
+.button-hover3 {
+  background-color: #703e0f;
+  color: #a09e9e;
+}
+
+.button-hover4 {
+  background-color: rgb(41, 2, 2);
+  color: #a09e9e;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background-color: #ebebeb;
+}
+
+.title-tabs-bar-container {
+  flex-direction: row;
+  height: 72rpx;
+  background-color: #9c978b;
+  align-items: center;
+  justify-content: center;
+}
+
+.warn {
+  line-height: 72rpx;
+  background-color: rgb(195, 206, 206);
+  color: #030000;
+  text-align: left;
+  margin: 15rpx 10rpx 0 0;
+  padding: 10rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+  border-radius: 30rpx;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+
+.txt {
+  line-height: 72rpx;
+  background-color: rgb(255, 255, 255);
+  color: #070000;
+  
+  margin: 10rpx 0rpx;
+  padding: 10rpx;
+}
+
+.productNav {
+  display: flex;
+  flex-direction: row;
+  font-family: "Microsoft YaHei";
+}
+
+.left {
+  width: 18%;
+  font-size: 30rpx;
+  background-color: rgb(241, 241, 241);
+  position: fixed;
+  top: 7%;
+  left: 0;
+  text-align: center;
+}
+
+.left view {
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.selected {
+  background-color: #fff;
+  border-left: 2px solid #e54847;
+  font-weight: bold;
+  color: #e54847;
+}
+
+.normal {
+  background-color: #f4f4f4;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.right {
+  width: 100%;
+  margin: 0 0 0 18%;
+}
+
+swiper {
+  height: 500px;
+}
+
+.new {
+  color:#f6f2f7;
+  background-color: rgb(32, 32, 29);
+}
+image {
+  width: 50%;
+  display: block;
+  height: 100%;
+  align-items: center
+}

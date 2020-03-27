@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "backgroundColor": "#238E23",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#238E23",
+  "navigationBarTitleText": "开发作",
+  "navigationBarTextStyle": "black"
 }
