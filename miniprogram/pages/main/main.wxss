@@ -45,8 +45,8 @@
 
 .search_icon {
   position: absolute;
-  left: 60rpx;
-  top: 64.6%; /*搜索图标的高低设置*/
+  left: 50rpx;
+  top: 37%;
 }
 
 .tip {
@@ -57,98 +57,7 @@
   font-size: 50rpx;
 }
 
-.fourWaste button {
-  margin-top: 5rpx;
-  line-height: 105rpx;
-  background-color: #545454;
-  color: #161515;
-  border-radius: 200rpx;
-}
 
-.fourWaste button::after {
-  border: none;
-  border-radius: 0;
-}
-
-.button-hover {
-  background-color: red;
-}
-
-/** 添加自定义button点击态样式类**/
-
-.other-button-hover {
-  background-color: blue;
-}
-
-button {
-  margin: 10px;
-}
-
-.harmful {
-  margin-top: 30px;
-  line-height: 105rpx;
-  background-color: rgb(173, 32, 32);
-  color: #f5efef;
-  border-radius: 98rpx;
-}
-
-.recyclable {
-  margin-top: 30px;
-  line-height: 105rpx;
-  background-color: rgb(2, 46, 94);
-  color: #f5efef;
-  border-radius: 98rpx;
-}
-
-.wet {
-  margin-top: 30px;
-  line-height: 105rpx;
-  background-color: rgb(116, 64, 38);
-  color: #f5efef;
-  border-radius: 98rpx;
-}
-
-.dry {
-  margin-top: 30px;
-  line-height: 105rpx;
-  background-color: rgb(32, 32, 29);
-  color: #f5efef;
-  border-radius: 98rpx;
-}
-
-.button-hover1 {
-  background-color: #a12020;
-  color: #a09e9e;
-}
-
-.button-hover2 {
-  background-color: #3e4af0;
-  color: #a09e9e;
-}
-
-.button-hover3 {
-  background-color: #703e0f;
-  color: #a09e9e;
-}
-
-.button-hover4 {
-  background-color: rgb(41, 2, 2);
-  color: #a09e9e;
-}
-
-.activity {
-  width: 100%;
-  height: 375rpx;
-}
-
-.activity image {
-  width: 100%;
-  height: 375rpx;
-}
-
-page {
-  background-color: #fff;
-}
 
 .box {
   display: -webkit-box;
@@ -247,6 +156,7 @@ image {
   border-bottom: 1px solid #f7f7f7;
   width: 50%;
   height: 370rpx;
+  
 }
 
 .hroom-list navigator:first-child, .hroom-list .hrm-li2 {
@@ -264,4 +174,94 @@ image {
 
 .heal-list navigator, .heal-list navigator image {
   height: 374rpx;
+}
+
+.search-inner {
+    width: 92%;
+    height: 64rpx;
+    margin-top: 14rpx;
+    margin-left: 4%;
+}
+.search-l {
+    width: 6%;
+    font-size: 20rpx;
+    color: white;
+}
+.search-l icon {
+    width: 40rpx;
+    height: 30rpx;
+   
+    background-size: 100%;
+    margin-top: 5rpx;
+}
+.search-l text {
+    width: 40rpx;
+    line-height: 24rpx;
+    margin-top: -10rpx;
+    display: block;
+}
+.search-r {
+    width: 90%;
+    height: 64rpx;
+    background-color: #f8f8f8;
+    border-radius: 40rpx;
+}
+.search-r input {
+    background: #f8f8f8 url(../images/search_logo.png) no-repeat 25rpx 18rpx;
+    background-size: 30rpx;
+    background-repeat: no-repeat;
+    color: #898989;
+    width: 100%;
+    height: 64rpx;
+    line-height: 64rpx;
+    border-radius: 40rpx;
+    font-size: 28rpx;
+    text-indent: 65rpx;
+}
+.search {
+    width: 100%;
+    height: 92rpx;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    background:#238E23;
+}
+.warn{
+  margin-top: 100rpx;
+  margin-left: 10rpx;
+  margin-right: 13rpx;
+}
+.warn1{
+  margin-top: 10rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.recyclable{
+  font-size: 29rpx;
+  color:#238E23;
+  justify-content: left;
+}
+.harmful{
+  font-size: 29rpx;
+  color:rgb(211, 32, 32);
+  justify-content: left;
+}
+.wet{
+  font-size: 29rpx;
+  color:rgb(142, 74, 35);
+  justify-content: left;
+}
+.dry{
+  font-size: 29rpx;
+  color:rgb(0, 0, 0);
+  justify-content: left;
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color:transparent;
+  display: none;
 }

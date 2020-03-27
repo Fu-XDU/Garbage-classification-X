@@ -1,5 +1,9 @@
 //var network = require("../../utils/network.js");
-
+const app = getApp()
+const util = require('../../utils/util.js')
+const plugin = requirePlugin("WechatSI")
+// 获取**全局唯一**的语音识别管理器**recordRecoManager**
+const manager = plugin.getRecordRecognitionManager()
 Page({
 
   /**
@@ -73,28 +77,6 @@ Page({
     })
     this.res_history();
   },
-  remove: function() {
-    var _this = this;
-    wx.showModal({
-      title: '提示',
-      content: '确认清空所有记录?',
-      success(res) {
-        if (res.confirm) {
-          wx.removeStorage({
-            key: 'historySearch',
-            success() {
-              _this.setData({
-                list: []
-              })
-            }
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-
-  },
   clean: function() {
     var _this = this
     setTimeout(function() {
@@ -119,59 +101,150 @@ Page({
     this.save();
   },
   res: function(e) {
-    //初始化数据
-    this.setData({
-      inputValue: e.detail.value,
-      resultList: [],
-      showView: false
+    wx.showLoading({
+      title: '正在查询',
     })
-
-    //连接数据库
-    const db = wx.cloud.database()
-    db.collection('Litter').where({
-      //使用正则查询，实现对搜索的模糊查询
-      "litter": db.RegExp({
-        regexp: e.detail.value,
-        //从搜索栏中获取的value作为规则进行匹配。
-        options: 'i',
-        //大小写不区分
+    if (e.detail.value == '') {
+      this.setData({
+        inputValue: e.detail.value,
+        resultList: []
       })
-    }).get({
-      success: res => {
-        var temp = []
-        for (let i in res.data) {
-          temp.push(res.data[i].litter + "     " + res.data[i].type);
+      wx.hideLoading();
+    } else if (e.detail.value != '') {
+      //初始化数据
+      this.setData({
+        inputValue: e.detail.value,
+        resultList: [],
+        showView: false
+      })
+      //访问云函数
+      wx.cloud.callFunction({
+        name: "search",
+        data: {
+          litter: this.data.inputValue
+        },
+        complete: res => {
+          try {
+            var temp = [],
+              temp2 = [],
+              len = res.result.data.length,
+              data = res.result.data
+            console.log(data)
+            console.log(len)
+            for (let i = 0; i < len; ++i) {
+              if (data[i].type == '干垃圾')
+                data[i].type = '干垃圾 其它垃圾'
+              else if (data[i].type == '湿垃圾')
+                data[i].type = '湿垃圾 餐厨垃圾'
+              temp.push([data[i].litter, data[i].type]);
+              temp2.push(data[i].litter)
+              //console.log('temp:',temp)
+            }
+          } catch (e) {}
+
+          //访问云函数
+          wx.cloud.callFunction({
+            name: "searchPy",
+            data: {
+              litter: this.data.inputValue
+            },
+            complete: res => {
+              try {
+                for (let i = 0; i < res.result.data.length; ++i) {
+                  if (res.result.data[i].type == '干垃圾')
+                    res.result.data[i].type = '干垃圾 其它垃圾'
+                  else if (res.result.data[i].type == '湿垃圾')
+                    res.result.data[i].type = '湿垃圾 餐厨垃圾'
+                  if (!temp2.includes(res.result.data[i].litter)) {
+                    temp.push([res.result.data[i].litter, res.result.data[i].type])
+                    temp2.push(res.result.data[i].litter)
+                  }
+                }
+                temp.sort(function(x, y) {
+                  //console.log(x[1])
+                  return x[1].localeCompare(y[1]);
+                });
+                console.log(temp)
+                this.setData({
+                  resultList: temp
+                })
+                wx.hideLoading();
+              } catch (e) {
+                this.setData({
+                  resultList: temp
+                })
+                wx.hideLoading();
+              }
+            }
+          })
         }
-        console.log(res)
-        this.setData({
-          resultList: temp
-        })
-      }
-    })
+      })
+    }
   },
   res_history: function() {
+    wx.showLoading({
+      title: '正在查询',
+    })
     //初始化数据
     this.setData({
       resultList: []
     })
-    const db = wx.cloud.database() //连接数据库
-    db.collection('Litter').where({
-      //使用正则查询，实现对搜索的模糊查询
-      "litter": db.RegExp({
-        regexp: this.data.inputValue,
-        //从搜索栏中获取的value作为规则进行匹配。
-        options: 'i',
-        //大小写不区分
-      })
-    }).get({
-      success: res => {
-        var temp = []
-        for (let i in res.data) {
-          temp.push(res.data[i].litter + "     " + res.data[i].type);
+    //访问云函数
+    wx.cloud.callFunction({
+      name: "search",
+      data: {
+        litter: this.data.inputValue
+      },
+      complete: res => {
+        try {
+          var temp = [],
+            temp2 = []
+          for (let i = 0; i < res.result.data.length; ++i) {
+            if (res.result.data[i].type == '干垃圾')
+              res.result.data[i].type = '干垃圾 其它垃圾'
+            else if (res.result.data[i].type == '湿垃圾')
+              res.result.data[i].type = '湿垃圾 餐厨垃圾'
+            temp.push([res.result.data[i].litter, res.result.data[i].type]);
+            temp2.push(res.result.data[i].litter)
+          }
+          console.log("历史查询", temp);
+        } catch (e) {
+          console.log(e)
         }
-        console.log(res)
         this.setData({
           resultList: temp
+        })
+        //访问云函数
+        wx.cloud.callFunction({
+          name: "searchPy",
+          data: {
+            litter: this.data.inputValue
+          },
+          complete: res => {
+            try {
+              for (let i = 0; i < res.result.data.length; ++i) {
+                if (res.result.data[i].type == '干垃圾')
+                  res.result.data[i].type = '干垃圾 其它垃圾'
+                else if (res.result.data[i].type == '湿垃圾')
+                  res.result.data[i].type = '湿垃圾 餐厨垃圾'
+                if (!temp2.includes(res.result.data[i].litter)) {
+                  temp.push([res.result.data[i].litter, res.result.data[i].type])
+                  temp2.push(res.result.data[i].litter)
+                }
+              }
+              temp.sort(function(x, y) {
+                //console.log(x[1])
+                return x[1].localeCompare(y[1]);
+              });
+              console.log(temp)
+              this.setData({
+                resultList: temp
+              })
+              wx.hideLoading();
+            } catch (e) {
+              wx.hideLoading();
+            }
+          }
         })
       }
     })
@@ -187,69 +260,167 @@ Page({
     })
   },
   check: function(e) {
-    const db = wx.cloud.database() //连接数据库
-    //查找数据库或者临时数据库是否存在此垃圾
-    db.collection('Litter').where({
-      litter: e.detail.value.litter,
-      type: e.detail.value.type
-    }).get({
-      success: res => {
+    try {
+      if (e.detail.value.litter == "") {
         wx.showToast({
           icon: 'none',
-          title: '此垃圾已被提交，请勿重复操作',
+          title: '请输入内容',
         })
-        console.log('此垃圾已被提交')
+        console.log('用户未输入内容')
         this.setData({
           flag: false
         })
       }
-    })
-    if (this.data.flag == true) {
-      db.collection('unregistedLitter').where({
-        litter: e.detail.value.litter,
-        type: e.detail.value.type
-      }).get({
-        success: res => {
-          wx.showToast({
-            icon: 'none',
-            title: '此垃圾已被提交，请勿重复操作',
+      if (e.detail.value.litter == "zxcvbnm") {
+        wx.navigateTo({
+          url: '../check/check'
+        })
+        this.setData({
+          flag: false
+        })
+      }
+      if (e.detail.value.litter == "asdzxc") {
+        wx.navigateTo({
+          url: '../database/database'
+        })
+        this.setData({
+          flag: false
+        })
+      }
+      //将垃圾添加至临时数据库待审
+      if (this.data.flag == true) {
+        const db = wx.cloud.database()
+        db.collection('Litter').where({
+            litter: e.detail.value.litter
           })
-          console.log('此垃圾已被提交')
-          this.setData({
-            flag: false
+          .get({
+            success: function(res) {
+              if (res.data.length == 0) {
+                const db = wx.cloud.database()
+                db.collection('unregistedLitter').where({
+                    litter: e.detail.value.litter
+                  })
+                  .get({
+                    success: function(res) {
+                      if (res.data.length == 0) {
+                        const db = wx.cloud.database() //连接数据库
+                        db.collection('unregistedLitter').add({
+                          data: {
+                            litter: e.detail.value.litter,
+                            type: e.detail.value.type,
+                            createTime: db.serverDate()
+                          },
+                          success: res => {
+                            // 在返回结果中会包含新创建的记录的 _id
+                            wx.showToast({
+                              title: '已提交审核',
+                            })
+                            console.log('[数据库unregistedLitter] [新增记录] 成功，记录 _id: ', res._id)
+                          },
+                          fail: err => {
+                            wx.showToast({
+                              icon: 'none',
+                              title: '提交审核失败'
+                            })
+                            console.error('[数据库unregistedLitter] [新增记录] 失败：', err)
+                          }
+                        })
+                      } else {
+                        wx.showToast({
+                          icon: 'none',
+                          title: '此词条已在审核中'
+                        })
+                        console.log(e.detail.value.litter + ' has been Existed in [unregistedLitter]')
+                      }
+                    },
+                    fail: function(res) {
+                      wx.showToast({
+                        icon: 'none',
+                        title: '提交审核失败'
+                      })
+                    }
+                  })
+                this.setData({
+                  flag: true
+                })
+              } else {
+                wx.showToast({
+                  icon: 'none',
+                  title: '已有此词条数据'
+                })
+                console.log(e.detail.value.litter + ' has been Existed in [Litter]')
+              }
+            },
+            fail: function(res) {
+              wx.showToast({
+                icon: 'none',
+                title: '提交审核失败'
+              })
+            }
           })
-        }
-      })
-    }
-    //将垃圾添加至临时数据库待审
-    if (this.data.flag == true) {
-      db.collection('unregistedLitter').add({
-        data: {
-          litter: e.detail.value.litter,
-          type: e.detail.value.type,
-          createTime: db.serverDate()
-        },
-        success: res => {
-          // 在返回结果中会包含新创建的记录的 _id
-          wx.showToast({
-            title: '已提交审核',
-          })
-          console.log('[数据库unregistedLitter] [新增记录] 成功，记录 _id: ', res._id)
-        },
-        fail: err => {
-          wx.showToast({
-            icon: 'none',
-            title: '提交审核失败'
-          })
-          console.error('[数据库unregistedLitter] [新增记录] 失败：', err)
-        }
-      })
-    }
-    this.setData({
-      flag: true
-    })
+      }
+    } catch (e) {}
   },
   onShareAppMessage: function() {
     return {}
-  }
+  },
+  //以下为语音识别所需函数
+  streamRecord: function() {
+    manager.start({
+      lang: 'zh_CN',
+    })
+  },
+  streamRecordEnd: function() {
+    manager.stop()
+  },
+  initRecord: function() {
+    //有新的识别内容返回，则会调用此事件
+    manager.onRecognize = (res) => {
+      let text = res.result
+      this.setData({
+        inputValue: text,
+      })
+    }
+    // 识别结束事件
+    manager.onStop = (res) => {
+      let text = res.result
+      if (text == '') {
+        // 用户没有说话，可以做一下提示处理...
+        wx.showToast({
+          title: '请说话',
+          icon: 'none'
+        })
+        return
+      }
+      var newtext='';
+      for (let i = 0; i < text.length; ++i) {
+        console.log(text[i])
+        if (text[i] != '.' && text[i] != ',' && text[i] != '!' && text[i] != '?' && text[i] != ';' && text[i] != ':' && text[i] != '"' && text[i] != "'" && text[i] != '。' && text[i] != '，' && text[i] != '！' && text[i] != '？' && text[i] != '；' && text[i] != '‘' && text[i] != '“' && text[i] != '什' && text[i] != '么' && text[i] != '垃' && text[i] != '圾' && text[i] != '是' && text[i] != '啥')
+          newtext += text[i];
+      }
+      this.setData({
+        inputValue: newtext,
+      })
+      // 得到完整识别内容就可以去搜索了
+      this.res_history()
+    }
+  },
+
+  onShow: function() {
+    if (this.data.recordStatus == 2) {
+      wx.showLoading({
+        // title: '',
+        mask: true,
+      })
+    }
+  },
+
+  onLoad: function() {
+    app.getRecordAuth();
+    this.initRecord();
+  },
+
+  onHide: function() {
+
+  },
 })

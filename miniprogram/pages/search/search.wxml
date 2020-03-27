@@ -1,3 +1,4 @@
+<image src="../../images/3.jpg" style="position: fixed; z-index: -999; width: 100%; height: 100%;"></image>
 <view class='container'>
   <view class='search_input'>
     <icon type="search" size="15" class='search_icon' />
@@ -12,7 +13,6 @@
     <view class="key" wx:if="{{list.length==0}}">暂无搜索记录</view>
     <view class="key" wx:for="{{list}}" wx:key="" bindtap='searchName' data-value='{{item}}'>{{item}}</view>
   </view>
-  <text>\n</text>
   <button class="section_input" wx:if="{{list.length!=0}}" bindtap='remove'>清空搜索历史</button>
   <view class='search_result' wx:if="{{inputValue}}">
     <view class='no_more' wx:if="{{resultList.length==0}}">
@@ -22,7 +22,7 @@
       <form bindsubmit='check' class="{{showView?'header_view_show':'header_view_hide'}}">
         <view class="section">
           <view class="section_input">
-            <input name="litter" placeholder='请输入垃圾名称' placeholder-class="search_placeholder" maxlength="10" name="litter"></input>
+            <input name="litter" placeholder='请输入垃圾名称' placeholder-class="search_placeholder" maxlength="10"></input>
           </view>
           <picker bindchange="bindPickerChange" name="type" value="{{array[index]}}" range="{{array}}">
             <view class="picker">
@@ -31,12 +31,17 @@
           </picker>
         </view>
         <view>
-          <button plain="true" form-type='submit' size='default'>提交</button>
+          <button plain="true" form-type='submit' size='default' bindtap='check'>提交</button>
         </view>
       </form>
     </view>
-    <view wx:for="{{resultList}}" wx:key="" bindtap='detail' data-id='{{item}}'>
-      {{item}}
+    <view wx:for="{{resultList}}" wx:key="" bindtap='detail' data-id='{{item[0]}}     {{item[1]}}'>
+      <text>{{item[0]}}</text>
+      <text style="float:right;">{{item[1]}}</text>
     </view>
   </view>
 </view>
+<!--Voice.wxml-->
+<button class="voice" catchtouchstart="streamRecord"  catchtouchend="streamRecordEnd">
+  <image src="../../images/button_zh.png" class="o" mode="aspectFill"></image>
+</button>

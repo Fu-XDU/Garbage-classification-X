@@ -15,6 +15,8 @@
 
 .list {
   padding-left: 10rpx;
+  overflow: flex;
+  display:flex;
 }
 
 .search_title {
@@ -33,9 +35,10 @@
   top: 80rpx;
   bottom: 0;
   background: #fff;
-  font-size: 26rpx;
+  font-size: 30rpx;
   overflow: scroll;
   padding-bottom: 30rpx;
+  -webkit-overflow-scrolling: touch;
 }
 
 .search_result>view {
@@ -68,7 +71,7 @@
   height: 72rpx;
   background: rgba(247, 247, 247, 1);
   border-radius: 36rpx;
-  padding-left: 80rpx;
+  padding-left: 85rpx;
   margin: auto;
   font-size: 30rpx;
 }
@@ -106,6 +109,7 @@
   font-size: 29rpx;
   overflow: flex;
   position:fixed;
+  display:flex;
 }
 
 .no_more {
@@ -168,4 +172,23 @@
 
 page {
   background-color: #fff;
+}
+.voice{
+  position:fixed;
+  bottom:50rpx;
+  width: 250rpx;
+  size:default;
+  left:33%;
+  border-radius: 100rpx;
+  height: 99rpx;
+  padding: 0;
+}
+.o{
+   position:fixed;
+  bottom:50rpx;
+  width: 250rpx;
+  size:default;
+  left:33%;
+  border-radius: 100rpx;
+  height: 100rpx;
 }

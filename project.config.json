@@ -8,7 +8,7 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"uglifyFileName": false,
+		"uglifyFileName": true,
 		"checkInvalidKey": true
 	},
 	"appid": "wx7a20cbfdc2e52985",
@@ -17,6 +17,7 @@
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+	"compileType": "miniprogram",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -33,8 +34,12 @@
 		"game": {
 			"list": []
 		},
-		"miniprogram": {
+		"gamePlugin": {
 			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -59,8 +64,8 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/harmfulWaste/harmfulWaste",
-					"pathName": "pages/harmfulWaste/harmfulWaste",
+					"name": "pages/waste/waste",
+					"pathName": "pages/waste/waste",
 					"query": "",
 					"scene": null
 				},
@@ -76,6 +81,47 @@
 					"name": "FeedBack",
 					"pathName": "pages/FeedBack/FeedBack",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/check/check",
+					"pathName": "pages/check/check",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "pages/database/database",
+					"pathName": "pages/database/database",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/test",
+					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/voice/voice",
+					"pathName": "pages/voice/voice",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/test",
+					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "bottom-button",
+					"pathName": "bottom-button",
 					"scene": null
 				}
 			]

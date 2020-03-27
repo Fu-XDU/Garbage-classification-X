@@ -1,49 +1,40 @@
-<!--pages/main/main.wxml-->
-<swiper class="activity">
-  <block wx:for="{{imgUrls}}">
-    <swiper-item>
-      <image src="{{item}}" class="slide-image" width="100%" height="155" />
-    </swiper-item>
-  </block>
-</swiper>
-<button type="warn" plain="false">注意：公共场所产生垃圾且未发现对应收集容器时，应携带至有投放点处妥善投放</button>
-<text class='tip'>在这里，你可以提交新的垃圾帮助我们完善数据库</text>
-<form bindsubmit='check'>
-  <view class="section">
-    <view class="section_input">
-      <input maxlength="10" name="litter" placeholder="请输入垃圾名称"/>
-    </view>
-    <picker bindchange="bindPickerChange" name="type" value="{{array[index]}}" range="{{array}}">
-      <view class="picker">
-        当前：{{array[index]}}
+<image src="../../images/4.jpg" style="position: fixed; z-index: -999; width: 100%; height: 100%;"></image><!--pages/main/main.wxml-->
+<view class="search" id="search">
+    <view class="search-inner clearfix">
+      <view class="search-l fl" id="channel">
+      <view class='search_input'>
+  <!--<icon type="search" size="15" class='search_icon' />-->
+  <icon type="search" size="15" class='search_icon' />
+  <input disabled="true" bindtap="ToSearch" placeholder='点我开始搜索'    placeholder-class="search_placeholder"></input>
+</view>
       </view>
-    </picker>
-  </view>
-  <view>
-    <button plain="true" form-type='submit'>提交</button>
-  </view>
-</form>
-<view class='search_input'>
-    <!--<icon type="search" size="15" class='search_icon' />-->
-    <input disabled="true" bindtap="ToSearch" placeholder='点我开始搜索' placeholder-class="search_placeholder"></input>
-  </view>
+    </view>
+</view>
+<button plain="false"></button>
+<button class="warn" plain="false">注意：公共场所产生垃圾且未发现对应收集容器时，应携带至有投放点处妥善投放</button>
+
 <view class="hot-room mt30">
   <view class="hroom-list clearfix">
-    <navigator class="box-sizing" url="">
-      <image bindtap="ToHarmful" src="../../images/Harmful.png" alt=""></image>
-    </navigator>
-    <!--有害垃圾-->
-    <navigator class="box-sizing hrm-li2" url="">
-      <image bindtap="ToRecyclable" src="../../images/Recyclable.png" alt=""></image>
+  <!--有害垃圾-->
+    <navigator class="box-sizing" url="../waste/waste">
+      <image src="../../images/Harmful.png" alt=""></image>
     </navigator>
     <!--可回收物-->
-    <navigator class="box-sizing" url="">
-      <image bindtap="ToWet" src="../../images/Wet.png" alt=""></image>
+    <navigator class="box-sizing hrm-li2" url="../waste/waste">
+      <image src="../../images/Recyclable.png" alt=""></image>
     </navigator>
     <!--厨余垃圾-->
-    <navigator class="box-sizing" url="">
-      <image bindtap="ToDry" src="../../images/Dry.png" alt=""></image>
+    <navigator class="box-sizing" url="../waste/waste">
+      <image src="../../images/Wet.png" alt=""></image>
     </navigator>
     <!--其它垃圾-->
+    <navigator class="box-sizing" url="../waste/waste">
+      <image src="../../images/Dry.png" alt=""></image>
+    </navigator>
+    <button class="warn1" plain="false"><text class="harmful">有害垃圾是指，对人体健康或者自然环境造成直接或潜在危害的废弃物，如废电池、废油漆、消毒剂、荧光灯管、含贡温度计、废药品及其包装物等</text></button>
+<button  class="warn1" plain="false"><text class="recyclable">可回收物是指，适宜回收利用和资源化利用的生活废弃物，如废纸张、废塑料、废玻璃制品、废金属、废织物等</text></button>
+<button  class="warn1" plain="false"><text class="wet">厨余垃圾是指居民日常生活及食品加工、饮食服务、单位供餐等活动中产生的垃圾</text></button>
+<button  class="warn1" plain="false"><text class="dry">其他垃圾包括除上述几类垃圾之外的砖瓦陶瓷、渣土、卫生间废纸等难以回收的废弃物，采取卫生填埋可有效减少对地下水、地表水、土壤及空气的污染</text></button>
+    
   </view>
 </view>

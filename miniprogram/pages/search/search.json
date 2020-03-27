@@ -1,7 +1,12 @@
 {
-  "backgroundColor": "#fff",
+  "backgroundColor": "#238E23",
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#fff",
+  "navigationBarBackgroundColor": "#238E23",
   "navigationBarTitleText": "搜索",
-  "navigationBarTextStyle": "black"
+  "navigationBarTextStyle": "black",
+  "disableScroll": true,
+
+"usingComponents": {
+  "result-bubble": "/components/result-bubble/index"
+}
 }
