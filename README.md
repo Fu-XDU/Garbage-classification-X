@@ -7,3 +7,6 @@
 ### 开发人员
 + FuM:1317283242@qq.com
 + 嘭！:2862951328@qq.com
+
+[GitHub仓库](https://github.com/Fu-XDU/Garbage-classification-X)
+
